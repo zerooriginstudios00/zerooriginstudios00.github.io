@@ -3,75 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero Origin Studio</title>
+    <title>Zero Origin Studio | Game Development Studio</title>
+    <link rel="icon" href="https://drive.google.com/thumbnail?id=1VbSODLOuy398-ugFd8-JRnnBR1ZXoUkh&sz=w200" type="image/jpeg">
+    
+    <!-- Google Fonts for Game Studio Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --text-color: #c5c6c7;
+            --bg-color: #07080c;
+            --text-color: #d1d5db;
+            --text-muted: #9ca3af;
             --accent-color: #f59e0b;
-            --card-bg: #1f2833;
-            --header-gradient: #000000;
+            --accent-glow: rgba(245, 158, 11, 0.45);
+            --card-bg: rgba(23, 30, 41, 0.78);
+            --card-border: rgba(255, 255, 255, 0.08);
             --neon-blue: #00f3ff;
+            --neon-pink: #ff007f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
             text-align: center;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.14) 0%, transparent 55%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Floating Navigation --- */
+        nav {
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 32px;
+            border-radius: 50px;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            margin-top: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            max-width: 92vw;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         /* --- Header Styles --- */
         header {
-            padding: 80px 20px 50px;
-            background: linear-gradient(180deg, var(--header-gradient) 0%, var(--bg-color) 100%);
+            width: 100%;
+            padding: 60px 20px 55px;
             border-bottom: 1px solid rgba(245, 158, 11, 0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         header img {
-            width: 240px;
-            height: 240px;
+            width: clamp(160px, 32vw, 240px);
+            height: clamp(160px, 32vw, 240px);
             border-radius: 50%;
-            box-shadow: 0 0 50px rgba(245, 158, 11, 0.4);
-            margin-bottom: 25px;
-            border: 3px solid #222;
+            box-shadow: 0 0 50px var(--accent-glow);
+            border: 3px solid rgba(245, 158, 11, 0.45);
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+            display: block;
+            background-color: #000;
         }
 
         header img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 70px rgba(245, 158, 11, 0.6);
+            transform: scale(1.06);
+            box-shadow: 0 0 75px rgba(245, 158, 11, 0.75);
         }
 
         h1 {
+            font-family: 'Orbitron', sans-serif;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 3rem;
-            margin: 0;
-            text-shadow: 0 2px 10px rgba(245, 158, 11, 0.5);
+            letter-spacing: clamp(2px, 1vw, 6px);
+            font-size: clamp(1.75rem, 5vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+            text-align: center;
         }
 
-        /* --- Layout --- */
+        .tagline {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--accent-color);
+            font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* --- Main Layout --- */
         .container {
-            max-width: 1100px;
+            width: 100%;
+            max-width: 1050px;
             margin: 0 auto;
-            padding: 40px 30px;
+            padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         section {
-            margin-bottom: 80px;
+            margin-bottom: 90px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -79,122 +168,224 @@
         }
 
         h2 {
-            color: var(--accent-color);
-            border-bottom: 2px solid rgba(245, 158, 11, 0.3);
-            padding-bottom: 12px;
-            font-size: 2.2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
             display: inline-block;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* --- About Section --- */
+        .intro-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: clamp(25px, 5vw, 45px);
+            max-width: 850px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .intro-text {
-            max-width: 800px;
+            color: var(--text-color);
+            font-size: clamp(1rem, 2.2vw, 1.18rem);
+            max-width: 760px;
             margin: 0 auto;
-            color: #d1d5db;
-            font-size: 1.2rem;
+            text-align: center;
         }
 
-        /* --- Game List Styles (Stacked Layout) --- */
+        /* --- Stacked & Equal-Sized Game Cards --- */
         .game-list {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px; /* Space between the stacked games */
+            gap: 50px;
             width: 100%;
         }
 
         .game-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 1px solid #333;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 1px solid var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
             width: 100%;
-            max-width: 750px; /* Prevents the cards from becoming too wide on large screens */
-            height: auto; /* Height adapts strictly to content */
+            max-width: 650px;
         }
 
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-            border-color: rgba(255, 255, 255, 0.2);
+        .game-card.featured-neon {
+            border-color: rgba(0, 243, 255, 0.22);
         }
 
-        /* --- Image Containers --- */
+        .game-card.featured-neon:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 243, 255, 0.16);
+            border-color: rgba(0, 243, 255, 0.5);
+        }
+
+        .game-card.upcoming-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.16);
+            border-color: rgba(245, 158, 11, 0.45);
+        }
+
+        /* --- Status Badges --- */
+        .status-badge {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .badge-live {
+            background: rgba(0, 243, 255, 0.12);
+            color: var(--neon-blue);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.2);
+        }
+
+        .badge-upcoming {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--accent-color);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- Uniform Uncropped Image Containers --- */
         .game-image-container {
             width: 100%;
-            background-color: #050505;
+            height: 220px;
+            background-color: #040507;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px;
         }
 
         .game-image-container img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
             height: auto;
             object-fit: contain;
             display: block;
+            border-radius: 8px;
         }
 
-        .no-image {
-            background: radial-gradient(circle, #2a0845 0%, #0b0c10 100%);
-            padding: 60px 20px; /* Gives the text placeholder natural breathing room instead of a forced height */
+        .neon-banner {
+            background: radial-gradient(circle at center, #1b0a33 0%, #06070b 100%);
+        }
+
+        .xo-graphic {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 7vw, 4rem);
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-shadow: 
+                0 0 8px #fff,
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+        }
+
+        .xo-graphic span.fading-o {
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 8px #fff,
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            animation: fadePulse 2.5s infinite ease-in-out;
+        }
+
+        @keyframes fadePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
         }
 
         .game-content {
-            padding: 40px 30px;
+            padding: clamp(25px, 5vw, 38px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
-            box-sizing: border-box;
+            text-align: center;
         }
 
         .game-content p {
-            font-size: 1.1rem;
-            color: #a0a5af;
-            margin: 15px 0 25px; /* Added slight bottom margin to space out the button */
-            max-width: 600px;
+            font-size: clamp(0.98rem, 2vw, 1.08rem);
+            color: var(--text-muted);
+            margin: 15px auto 26px;
+            max-width: 550px;
+            text-align: center;
         }
 
         /* --- Title Typography Effects --- */
         .standard-title {
-             color: #fff;
-             font-size: 2rem;
-             margin-top: 0;
-             margin-bottom: 5px;
-             text-transform: uppercase;
-             letter-spacing: 1px;
-        }
-
-        .neon-title {
+            font-family: 'Orbitron', sans-serif;
             color: #ffffff;
-            font-size: 2.1rem;
-            margin-top: 0;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            line-height: 1.35;
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .neon-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            line-height: 1.35;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
             text-shadow: 
                 0 0 5px #fff,
                 0 0 10px #fff,
                 0 0 20px var(--neon-blue),
-                0 0 40px var(--neon-blue),
-                0 0 80px var(--neon-blue);
-            animation: flicker 3s infinite alternate;
+                0 0 40px var(--neon-blue);
+            animation: flicker 4s infinite alternate;
         }
 
         @keyframes flicker {
             0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--neon-blue), 0 0 35px var(--neon-blue), 0 0 70px var(--neon-blue);
+                text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--neon-blue), 0 0 35px var(--neon-blue);
             }
             20%, 24%, 55% {
                 text-shadow: none;
@@ -203,135 +394,355 @@
 
         /* --- Buttons --- */
         .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #000;
-            padding: 14px 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000000;
+            padding: 14px 36px;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 800;
+            border-radius: 10px;
+            font-weight: 700;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
         }
 
         .btn:hover {
-            background-color: #ffb732;
-            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
-            transform: scale(1.03);
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 6px 28px rgba(245, 158, 11, 0.6);
+            transform: translateY(-2px);
         }
 
         .btn.disabled {
-            background-color: #2b3544;
+            background: #1f2937;
             color: #6b7280;
             box-shadow: none;
             pointer-events: none;
             border: 1px solid #374151;
         }
 
-        /* --- Contact Section --- */
+        /* --- Contact & Studio Links Section --- */
         .contact-box {
-            background: linear-gradient(145deg, #1f2833 0%, #0b0c10 100%);
-            border: 1px solid #333;
-            border-radius: 16px;
-            padding: 50px 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: clamp(30px, 6vw, 50px) clamp(15px, 4vw, 35px);
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            max-width: 720px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         
         .contact-email {
             display: inline-block;
-            margin-top: 15px;
-            font-size: 1.8rem;
+            margin: 18px 0 35px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 4vw, 1.7rem);
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             letter-spacing: 1px;
-            transition: color 0.3s, text-shadow 0.3s;
+            padding: 12px 24px;
+            border-radius: 10px;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            transition: all 0.3s ease;
+            word-break: break-all;
+            max-width: 100%;
         }
         
         .contact-email:hover {
-            color: #fff;
-            text-shadow: 0 0 15px var(--accent-color);
+            color: #ffffff;
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .connect-heading {
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Using adblock-safe class names so browser extensions never hide buttons */
+        .connect-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .connect-btn {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            min-width: 145px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #ffffff !important;
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .connect-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            display: inline-block !important;
+        }
+
+        .connect-btn span {
+            color: inherit;
+            display: inline-block !important;
+            line-height: 1;
+        }
+
+        .connect-btn:hover svg {
+            transform: scale(1.15);
+        }
+
+        /* Brand Hover Colors for All 4 Buttons */
+        .connect-btn.btn-yt:hover {
+            background: rgba(255, 0, 0, 0.16);
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.35);
+            color: #ff4d4d !important;
+        }
+
+        .connect-btn.btn-x:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            color: #ffffff !important;
+        }
+
+        .connect-btn.btn-ig:hover {
+            background: rgba(225, 48, 108, 0.16);
+            border-color: #e1306c;
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.35);
+            color: #ff75a0 !important;
+        }
+
+        .connect-btn.btn-dc:hover {
+            background: rgba(88, 101, 242, 0.18);
+            border-color: #5865F2;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+            color: #a5b4fc !important;
         }
 
         /* --- Footer --- */
         footer {
-            padding: 30px;
-            font-size: 0.95rem;
+            width: 100%;
+            margin-top: auto;
+            padding: 35px 20px;
+            font-size: 0.9rem;
             color: #6b7280;
-            border-top: 1px solid #1f2833;
-            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background-color: #040507;
             letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* --- Responsive Mobile & Tablet Adjustments --- */
+        @media (max-width: 768px) {
+            nav {
+                gap: 18px;
+                padding: 10px 22px;
+            }
+            header {
+                padding: 45px 15px;
+            }
+            .container {
+                padding: 40px 16px;
+            }
+            section {
+                margin-bottom: 65px;
+            }
+            .game-list {
+                gap: 40px;
+            }
+            .game-image-container {
+                height: 190px;
+            }
+            .connect-btn {
+                flex: 1 1 calc(50% - 14px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                gap: 14px;
+                padding: 10px 16px;
+                width: 92%;
+            }
+            nav a {
+                font-size: 0.95rem;
+            }
+            .game-image-container {
+                height: 165px;
+            }
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+            }
+            .connect-grid {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .connect-btn {
+                width: 100%;
+                flex: none;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Sticky Navigation Bar -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Studio Header -->
     <header>
-        <img src="https://drive.google.com/thumbnail?id=1VbSODLOuy398-ugFd8-JRnnBR1ZXoUkh&sz=w1000" alt="Zero Origin Studio Logo">
+        <div class="logo-wrapper">
+            <img 
+                src="https://drive.google.com/thumbnail?id=1VbSODLOuy398-ugFd8-JRnnBR1ZXoUkh&sz=w1000" 
+                onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1VbSODLOuy398-ugFd8-JRnnBR1ZXoUkh';" 
+                referrerpolicy="no-referrer" 
+                alt="Zero Origin Studio Logo">
+        </div>
         <h1>Zero Origin Studio</h1>
+        <p class="tagline">Creating Fun Games 🎮</p>
     </header>
 
+    <!-- Main Content -->
     <div class="container">
         
+        <!-- About Section -->
         <section id="about">
             <h2>About Us</h2>
-            <p class="intro-text">
-                Welcome to Zero Origin Studio. We are a passionate and dedicated team focused on crafting immersive, engaging, and high-quality gaming experiences. From the initial creative concept to the final polished release, our mission is to build games that captivate players, feature tight mechanics, and push the boundaries of digital entertainment. 
-            </p>
+            <div class="intro-card">
+                <p class="intro-text">
+                    Welcome to Zero Origin Studio. We are an independent game development studio driven by creativity and a passion for crafting immersive, engaging, and high-quality gaming experiences. From the initial spark of an idea to the final polished release, our mission is to build games with tight mechanics and memorable moments that captivate players everywhere.
+                </p>
+            </div>
         </section>
 
+        <!-- Games Portfolio Section -->
         <section id="games">
             <h2>Our Games</h2>
             
             <div class="game-list">
-                <div class="game-card">
-                    <div class="game-image-container no-image">
-                        <h3 class="neon-title" style="margin: 0; font-size: 4rem;">X / O</h3>
+                <!-- Game 1: Tic Tac Toe: Fading Edition -->
+                <div class="game-card featured-neon">
+                    <div class="game-image-container neon-banner">
+                        <div class="xo-graphic">X / <span class="fading-o">O</span></div>
                     </div>
                     <div class="game-content">
-                        <div>
-                            <h3 class="neon-title">Tic Tac Toe:<br>Fading Edition</h3>
-                            <p>A fresh, strategic twist on the classic digital board game. Plan your moves carefully before they fade away into the void.</p>
-                        </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.zeroorigin.fading_Tic_Tac_Toe" class="btn" target="_blank" rel="noopener noreferrer">Play Now</a>
+                        <span class="status-badge badge-live">Available Now</span>
+                        <h3 class="neon-title">Tic Tac Toe:<br>Fading Edition</h3>
+                        <p>A fresh, strategic twist on the classic digital board game. Outsmart your opponent and plan your moves carefully before your older marks fade away into the void.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.zeroorigin.fading_Tic_Tac_Toe" class="btn" target="_blank" rel="noopener noreferrer">
+                            Get it on Google Play
+                        </a>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <!-- Game 2: Grid Roulette -->
+                <div class="game-card upcoming-card">
                     <div class="game-image-container">
-                        <img src="https://drive.google.com/thumbnail?id=1-CDpQaBhdYAomYu8S5jCcOKjWrDajBOF&sz=w1000" alt="Grid Roulette Banner">
+                        <img 
+                            src="https://drive.google.com/thumbnail?id=1-CDpQaBhdYAomYu8S5jCcOKjWrDajBOF&sz=w1200" 
+                            onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-CDpQaBhdYAomYu8S5jCcOKjWrDajBOF';" 
+                            referrerpolicy="no-referrer" 
+                            alt="Grid Roulette Banner">
                     </div>
                     <div class="game-content">
-                        <div>
-                            <h3 class="standard-title">Grid Roulette</h3>
-                            <p>Take your chances on the grid. A high-stakes, fast-paced card game currently undergoing active development in the studio.</p>
-                        </div>
+                        <span class="status-badge badge-upcoming">In Development</span>
+                        <h3 class="standard-title">Grid Roulette</h3>
+                        <p>Take your chances on the grid. A high-stakes, fast-paced card game blending strategy, risk, and tense decision-making, currently undergoing active development in the studio.</p>
                         <a href="#" class="btn disabled">Coming Soon</a>
                     </div>
                 </div>
             </div>
-
         </section>
 
+        <!-- Contact & Social Media Section -->
         <section id="contact">
             <h2>Get In Touch</h2>
             <div class="contact-box">
-                <p style="color: #a0a5af; font-size: 1.2rem; margin-bottom: 10px;">Interested in our projects or want to collaborate?</p>
+                <p style="color: var(--text-color); font-size: 1.15rem;">Interested in our projects, press inquiries, or want to collaborate?</p>
                 <a href="mailto:zerooriginstudios00@gmail.com" class="contact-email">zerooriginstudios00@gmail.com</a>
+
+                <p class="connect-heading">Follow Our Journey</p>
+                <div class="connect-grid">
+                    <!-- 1. YouTube -->
+                    <a href="https://www.youtube.com/@ZeroOriginStudio" class="connect-btn btn-yt" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/>
+                        </svg>
+                        <span>YouTube</span>
+                    </a>
+
+                    <!-- 2. X -->
+                    <a href="https://x.com/ZeroOrigin00" class="connect-btn btn-x" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        <span>X</span>
+                    </a>
+
+                    <!-- 3. Instagram -->
+                    <a href="https://www.instagram.com/zerooriginstudio/" class="connect-btn btn-ig" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+
+                    <!-- 4. Discord -->
+                    <a href="https://discord.gg/xTYxuTuXQ" class="connect-btn btn-dc" title="Discord Coming Soon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09-.01-.02-.04-.03-.07-.03-1.5.26-2.93.71-4.27 1.33-.01 0-.02.01-.03.02-2.72 4.07-3.47 8.03-3.1 11.95 0 .02.01.04.03.05 1.8 1.32 3.53 2.12 5.24 2.65.03.01.06 0 .07-.02.4-.55.76-1.13 1.07-1.74.02-.04 0-.08-.04-.09-.57-.22-1.11-.48-1.64-.78-.04-.02-.04-.08-.01-.11.11-.08.22-.17.33-.25.02-.02.05-.02.07-.01 3.44 1.57 7.15 1.57 10.55 0 .02-.01.05-.01.07.01.11.09.22.17.33.26.04.03.04.09-.01.11-.52.31-1.07.56-1.64.78-.04.01-.05.06-.04.09.32.61.68 1.19 1.07 1.74.03.01.06.02.09.01 1.72-.53 3.45-1.33 5.25-2.65.02-.01.03-.03.03-.05.44-4.53-.73-8.46-3.1-11.95-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12 0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12 0 1.17-.83 2.12-1.89 2.12z"/>
+                        </svg>
+                        <span>Discord</span>
+                    </a>
+                </div>
             </div>
         </section>
 
     </div>
 
+    <!-- Footer -->
     <footer>
         &copy; 2026 Zero Origin Studio. All rights reserved.
     </footer>
